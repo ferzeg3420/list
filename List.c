@@ -1,7 +1,5 @@
 // List.c
 // Fernando Zegada
-// fzegadar
-// Programming Assignment 4
 // Implementation of the list ADT in C.
 
 #include<stdio.h>
