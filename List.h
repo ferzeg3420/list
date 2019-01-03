@@ -1,7 +1,5 @@
 // List.h
 // Fernando Zegada
-// fzegadar
-// Programming assignment 4
 // Function prototypes and headers of the list ADT in C.
 
 #ifndef _LIST_H_INCLUDE_
