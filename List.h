@@ -112,7 +112,7 @@ void delete(List L);
 
 // listToString()
 // Prints data elements in L on a single line to stdout
-//void listToString(FILE* out, List L);
+void listToString(FILE* out, List L);
 
 // copyList()
 // Returns a new list representing the same integer sequence as this List.
