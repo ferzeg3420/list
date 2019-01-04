@@ -1,20 +1,20 @@
 // List.c
 // Fernando Zegada
+// fzegadar
+// Programming Assignment 4
 // Implementation of the list ADT in C.
 
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include<stdbool.h>
 #include "List.h"
-#include "Matrix.h"
 
 // structs --------------------------------------------------------------------
 
 // private NodeObj type
 typedef struct NodeObj
 {
-   Entry data;
+   int data;
    struct NodeObj* next;
    struct NodeObj* previous;
 } NodeObj; 
@@ -38,7 +38,7 @@ typedef struct ListObj
 // newNode()
 // Returns reference to new Node object. Initializes next and data fields.
 // Private.
-Node newNode(Entry data)
+Node newNode(int data)
 {
    Node N = malloc(sizeof(NodeObj));
    N->data = data;
@@ -71,7 +71,7 @@ List newList(void)
    
    return(L);
 }
-
+// comment
 
 // freeList()
 // Frees all heap memory associated with List *pL, and sets *pL to NULL.S
@@ -116,7 +116,7 @@ int Index(List L)
 // front()
 // Returns the value at the front of L.
 // Pre: list is not empty.
-Entry front(List L)
+int front(List L)
 {
    if( L==NULL )
    {
@@ -134,7 +134,7 @@ Entry front(List L)
 // back()
 // Returns the value at the back of L.
 // Pre: list is not empty.
-Entry back(List L)
+int back(List L)
 {
    if( L==NULL )
    {
@@ -151,7 +151,7 @@ Entry back(List L)
 
 // get()
 // Returns the value of the cursor node.
-Entry get(List L)
+int get(List L)
 {
    if( L==NULL )
    {
@@ -166,11 +166,11 @@ Entry get(List L)
    return L->cursor->data; 
 }
 
-// areListEquals()
-// returns true (1) if List A and B have the same values, false (0) otherwise.
-bool areListsEqual(List A, List B)
+// equals()
+// returns true (1) if A is identical to B, false (0) otherwise
+int equals(List A, List B)
 {
-   bool eq = false;
+   int eq = 0;
    Node N = NULL;
    Node M = NULL;
 
@@ -185,7 +185,7 @@ bool areListsEqual(List A, List B)
    M = B->front;
    while( eq && N!=NULL)
    {
-      eq = areEntriesEqual(N->data, M->data);
+      eq = (N->data==M->data);
       N = N->next;
       M = M->next;
    }
@@ -294,7 +294,7 @@ void moveNext(List L)
 // prepend()
 // Insert new element into this List. If List is non-empty,
 // insertion takes place before front element.
-void prepend(List L, Entry data) 
+void prepend(List L, int data) 
 {
    if( L==NULL )
    {
@@ -324,7 +324,7 @@ void prepend(List L, Entry data)
 // append()
 // Insert new element into this List. If List is non-empty,
 // insertion takes place after back element.
-void append(List L, Entry data)  
+void append(List L, int data)  
 {
    if( L==NULL )
    {
@@ -350,7 +350,7 @@ void append(List L, Entry data)
 // insertBefore()
 // Insert new element before cursor.
 // Pre: length()>0, Index() >=0
-void insertBefore(List L, Entry data)
+void insertBefore(List L, int data)
 {
    if( L==NULL )
    {
@@ -390,7 +390,7 @@ void insertBefore(List L, Entry data)
 // insertAfter()
 // Insert new element after cursor.
 // Pre: length()>0, Index() >=0
-void insertAfter(List L, Entry data)
+void insertAfter(List L, int data)
 {
    if( L==NULL )
    {
@@ -509,7 +509,7 @@ void deleteBack(List L)
 
 // delete()
 // Deletes cursor element, making the cursor undefined.
-// Pre: length() > 0, Index() >= 0
+// Pre: length()>0, Index() >= 0
 void delete(List L) 
 {
    if( L==NULL )
@@ -559,23 +559,22 @@ void delete(List L)
 
 // Other Functions ------------------------------------------------------------
 
-// printList()
+// listToString()
 // Prints data elements in L to output file.
-void printList(FILE* out, List L)
-{
-   Node N = NULL;
+/* void listToString(FILE* out, List L) */
+/* { */
+/*    Node N = NULL; */
    
-   if( L==NULL )
-   {
-      printf("List Error: calling printList() on NULL List reference\n");
-      exit(1);
-   }
-   for(N = L->front; N != NULL; N = N->next)
-   {
-      toString(N->data, out);
-      fprintf(out, " ");
-   }
-}                                                                           
+/*    if( L==NULL ) */
+/*    { */
+/*       printf("List Error: calling listToString() on NULL List reference\n"); */
+/*       exit(1); */
+/*    } */
+/*    for(N = L->front; N != NULL; N = N->next) */
+/*    { */
+/*       fprintf(out, "%d ", N->data); */
+/*    } */
+/* }                                                                            */
 
 // copyList()
 // Returns a new list representing the same integer sequence as this List.
@@ -605,7 +604,7 @@ List copyList(List L)
 // Helper Functions -----------------------------------------------------------
 // insertInOrder()
 // inserts new nodes in increasing order.
-void insertInOrder(List* L, Entry v)
+void insertInOrder(List* L, int v)
 {
    if( L == NULL || *L == NULL )
    {
@@ -617,7 +616,7 @@ void insertInOrder(List* L, Entry v)
    moveFront(*L);
    while( Index(*L) != -1 )
    {
-      if( getData(v) < getData( get(*L) ) )
+      if( v < get(*L) )
       {
          insertBefore(*L, v);
          break;

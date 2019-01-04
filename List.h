@@ -1,16 +1,14 @@
 // List.h
 // Fernando Zegada
+// fzegadar
+// Programming assignment 4
 // Function prototypes and headers of the list ADT in C.
 
 #ifndef _LIST_H_INCLUDE_
 #define _LIST_H_INCLUDE_
 
-#include <stdbool.h>
-#include "Matrix.h"
-
 // Exported type --------------------------------------------------------------
 typedef struct ListObj* List;
-typedef struct EntryObj* Entry;
 
 // Constructors-Destructors ---------------------------------------------------
 
@@ -34,19 +32,19 @@ int Index(List L);
 
 // front()
 // Returns the data of the front node in the List.
-Entry front(List L);
+int front(List L);
 
 // back()
 // Returns the data of the back node in the List.
-Entry back(List L);
+int back(List L);
 
 // get()
 // Returns the data of the cursor node.
-Entry get(List L);
+int get(List L);
 
-// areListsEquals()
+// equals()
 // returns true (1) if A is identical to B, false (0) otherwise.
-bool areListsEqual(List A, List B);
+int equals(List A, List B);
 
 // Manipulation procedures ----------------------------------------------------
 
@@ -80,22 +78,22 @@ void moveNext(List L);
 // prepend()
 // insert new element into this List. If List is non-empty,
 // insertion takes place before front element.
-void prepend(List L, Entry data);
+void prepend(List L, int data);
 
 // append()
 // insert new element into this List. If List is non-empty,
 // insertion takes place after back element.
-void append(List L, Entry data);
+void append(List L, int data);
 
 // insertBefore()
 // insert new element before cursor.
 // Pre: length()>0, Index() >=0
-void insertBefore(List L, Entry data);
+void insertBefore(List L, int data);
 
 // insertAfter()
 // insert new element after cursor.
 // Pre: length()>0, Index() >=0
-void insertAfter(List L, Entry data);
+void insertAfter(List L, int data);
 
 // deleteFront()
 // Deletes the front element. Pre: length() > 0
@@ -112,9 +110,9 @@ void delete(List L);
 
 // Other Functions ------------------------------------------------------------
 
-// printList()
+// listToString()
 // Prints data elements in L on a single line to stdout
-//void printList(FILE* out, List L);
+//void listToString(FILE* out, List L);
 
 // copyList()
 // Returns a new list representing the same integer sequence as this List.
@@ -125,7 +123,7 @@ List copyList(List L);
 // Helper Functions -----------------------------------------------------------
 // insertInOrder()
 // inserts new nodes in increasing order.
-void insertInOrder(List* L, Entry v);
+void insertInOrder(List* L, int v);
 
 
 #endif
