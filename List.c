@@ -561,20 +561,21 @@ void delete(List L)
 
 // listToString()
 // Prints data elements in L to output file.
-/* void listToString(FILE* out, List L) */
-/* { */
-/*    Node N = NULL; */
+void listToString(List L, FILE* out)
+{
+   Node N = NULL;
    
-/*    if( L==NULL ) */
-/*    { */
-/*       printf("List Error: calling listToString() on NULL List reference\n"); */
-/*       exit(1); */
-/*    } */
-/*    for(N = L->front; N != NULL; N = N->next) */
-/*    { */
-/*       fprintf(out, "%d ", N->data); */
-/*    } */
-/* }                                                                            */
+   if( L==NULL )
+   {
+      printf("List Error: calling printList() on NULL List reference\n");
+      exit(1);
+   }
+   for(N = L->front; N != NULL; N = N->next)
+   {
+      entryToString(N->data, out);
+      fprintf(out, " ");
+   }
+}                                                                            */
 
 // copyList()
 // Returns a new list representing the same integer sequence as this List.
