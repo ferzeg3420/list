@@ -1,7 +1,5 @@
 // List.c
 // Fernando Zegada
-// fzegadar
-// Programming Assignment 4
 // Implementation of the list ADT in C.
 
 #include<stdio.h>
@@ -33,7 +31,7 @@ typedef struct ListObj
 } ListObj;
 
 
-// Constructors-Destructors ---------------------------------------------------
+// Constructors and Destructors ------------------------------------------------
 
 // newNode()
 // Returns reference to new Node object. Initializes next and data fields.
@@ -71,7 +69,6 @@ List newList(void)
    
    return(L);
 }
-// comment
 
 // freeList()
 // Frees all heap memory associated with List *pL, and sets *pL to NULL.S
@@ -199,7 +196,6 @@ int equals(List A, List B)
 // Resets the list to its original empty state.
 void clear(List L)
 {
-  //  printf("ping from Clear():");  //debug
    if( L==NULL )
    {
       printf("List Error: calling clear() on NULL List reference.\n");
@@ -447,7 +443,6 @@ void deleteFront(List L)
          L->cursor = NULL;
          L->Index = - 1;
       }
-      //      printf("deleteFront( %d ) ", (L->front)->data);//debug
       freeNode(&L->front);
       L->back = L->front = NULL;
    }
@@ -461,7 +456,6 @@ void deleteFront(List L)
       }
       L->front = L->front->next;
       L->front->previous->next = NULL;
-      //      printf("deleteFront ( %d ) ", (L->front->previous)->data);//debug
       freeNode(&L->front->previous);
       L->front->previous = NULL;
    }
@@ -561,21 +555,20 @@ void delete(List L)
 
 // listToString()
 // Prints data elements in L to output file.
-void listToString(List L, FILE* out)
-{
-   Node N = NULL;
+/* void listToString(FILE* out, List L) */
+/* { */
+/*    Node N = NULL; */
    
-   if( L==NULL )
-   {
-      printf("List Error: calling printList() on NULL List reference\n");
-      exit(1);
-   }
-   for(N = L->front; N != NULL; N = N->next)
-   {
-      entryToString(N->data, out);
-      fprintf(out, " ");
-   }
-}                                                                            */
+/*    if( L==NULL ) */
+/*    { */
+/*       printf("List Error: calling listToString() on NULL List reference\n"); */
+/*       exit(1); */
+/*    } */
+/*    for(N = L->front; N != NULL; N = N->next) */
+/*    { */
+/*       fprintf(out, "%d ", N->data); */
+/*    } */
+/* }                                                                            */
 
 // copyList()
 // Returns a new list representing the same integer sequence as this List.
@@ -613,7 +606,6 @@ void insertInOrder(List* L, int v)
              "NULL List reference or null pointer\n");
       exit(1);
    }
-   // maybe create a node to remember the cursor //debug.
    moveFront(*L);
    while( Index(*L) != -1 )
    {

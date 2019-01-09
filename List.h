@@ -1,7 +1,5 @@
 // List.h
 // Fernando Zegada
-// fzegadar
-// Programming assignment 4
 // Function prototypes and headers of the list ADT in C.
 
 #ifndef _LIST_H_INCLUDE_
@@ -112,7 +110,7 @@ void delete(List L);
 
 // listToString()
 // Prints data elements in L on a single line to stdout
-void listToString(FILE* out, List L);
+//void listToString(FILE* out, List L);
 
 // copyList()
 // Returns a new list representing the same integer sequence as this List.
